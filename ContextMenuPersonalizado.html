@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Contextual Personalizado</title>
+    <style>
+        /* Estilo para el menú */
+        #miMenu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        #miMenu a {
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        #miMenu a:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
-$END$
+<h1>Haz clic derecho para ver el menú</h1>
+<div id="miMenu">
+    <a href="#">Opción 1</a>
+    <a href="#">Opción 2</a>
+    <a href="#">Opción 3</a>
+</div>
+
+<script>
+    // Obtén el menú contextual
+    let menu = document.getElementById("miMenu");
+
+    // Detecta clic derecho
+    document.addEventListener("contextmenu", function(event) {
+        event.preventDefault(); // Evita el menú contextual predeterminado
+
+        // Muestra el menú personalizado en la posición del clic
+        menu.style.display = "block";
+        menu.style.left = event.pageX + "px";
+        menu.style.top = event.pageY + "px";
+    });
+
+    // Cierra el menú cuando el usuario hace clic en cualquier parte de la página
+    document.addEventListener("click", function() {
+        menu.style.display = "none";
+    });
+</script>
 </body>
 </html>
